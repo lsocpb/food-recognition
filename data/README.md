@@ -27,10 +27,6 @@ train_ds, val_ds = dataset
 print("Liczba klas:", info.features['label'].num_classes)
 print("Przykładowe klasy:", info.features['label'].names[:10])
 ```
-````
-
----
-
 ## 📁 Własny dataset
 
 Jeśli dodajecie własne zdjęcia potraw, umieśćcie je w:
