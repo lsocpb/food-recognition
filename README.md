@@ -53,7 +53,14 @@ git clone https://github.com/<user>/food-recognition-.git
 cd food-recognition
 ```
 
-### **2. Instalacja zależności**
+### **2. Virtual environment**
+```
+python -m venv venv
+source venv/bin/activate    # Linux/macOS
+venv\Scripts\activate       # Windows
+```
+
+### **3. Instalacja zależności**
 ```
 pip install -r requirements.txt
 ```
