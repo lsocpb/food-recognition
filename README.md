@@ -1,7 +1,5 @@
 # Food Recognition Project – Repository Template
 
-Ten szablon opisuje strukturę repozytorium, suggested pliki, foldery i krótkie opisy ich roli.
-
 ---
 
 ## 📁 Struktura katalogów
@@ -93,15 +91,4 @@ streamlit run streamlit_app/app.py
 ```
 
 ---
-
-## 🔧 requirements.txt (szablon)
-```
-tensorflow
-numpy
-pandas
-matplotlib
-scikit-learn
-streamlit
-opencv-python
-```
 
