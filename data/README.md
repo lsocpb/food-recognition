@@ -7,7 +7,6 @@
 
 Plik ten opisuje sposób pobierania i przygotowania zbioru danych Food-101 oraz ewentualnych własnych zdjęć.
 
-````
 # Folder data/
 
 ## 📥 Jak pobrać dataset Food-101
