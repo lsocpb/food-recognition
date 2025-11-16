@@ -1,5 +1,4 @@
-# Food Recognition Project – Repository Template
-
+# Food Recognition
 ---
 
 ## 📁 Struktura katalogów
@@ -28,7 +27,7 @@ food-recognition-project/
 │       └── helpers.py
 │
 ├── models/
-│   └── .gitkeep             # Modele zapisujemy lokalnie, repo ich nie przechowuje
+│   └── model.h5
 │
 ├── streamlit_app/
 │   └── app.py
@@ -50,8 +49,8 @@ System klasyfikacji zdjęć potraw wykorzystujący TensorFlow + Keras oraz datas
 
 ### **1. Klonowanie repozytorium**
 ```
-git clone https://github.com/<user>/food-recognition-project.git
-cd food-recognition-project
+git clone https://github.com/<user>/food-recognition-.git
+cd food-recognition
 ```
 
 ### **2. Instalacja zależności**
