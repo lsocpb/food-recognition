@@ -49,7 +49,7 @@ System klasyfikacji zdjęć potraw wykorzystujący TensorFlow + Keras oraz datas
 
 ### **1. Klonowanie repozytorium**
 ```
-git clone https://github.com/lsocpb/food-recognition-.git
+git clone https://github.com/lsocpb/food-recognition.git
 cd food-recognition
 ```
 
