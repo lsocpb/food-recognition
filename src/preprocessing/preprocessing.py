@@ -39,7 +39,7 @@ def filter_classes(image, label, all_class_names):
 
 def process_image(image, label):
     image = tf.image.resize(image, (IMG_SIZE, IMG_SIZE))
-    image = tf.cast(image, tf.float32) / 255.0
+    image = tf.cast(image, tf.float32)
     return image, label
 
 def apply_filter_map(is_in_target, image, new_label):
