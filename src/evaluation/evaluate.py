@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import tensorflow as tf
 
 def evaluate_model(model, test_ds, class_names):
@@ -18,8 +17,8 @@ def evaluate_model(model, test_ds, class_names):
     
     cm = confusion_matrix(y_true, y_pred)
     plt.figure(figsize=(10, 8))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
-                xticklabels=class_names, yticklabels=class_names)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
+    disp.plot(cmap='Blues', values_format='d', ax=plt.gca())
     plt.title('Macierz Pomyłek')
     plt.ylabel('Prawdziwa klasa (Ground Truth)')
     plt.xlabel('Przewidziana klasa (Prediction)')
