@@ -28,34 +28,51 @@ def create_transfer_model(input_shape=(224, 224, 3)):
     )
 
     return model
-def create_vgg16_transfer_model(input_shape=(224,224,3), fine_tune=1):
+def create_vgg16_transfer_model(input_shape=(224,224,3)):
     base_model = VGG16(
         include_top=False,
         input_shape=input_shape,
         weights="imagenet"
     )
-
-    if fine_tune > 0:
-        for layer in base_model.layers[:-fine_tune]:
-            layer.trainable = False
-        for layer in base_model.layers[-fine_tune:]:
-            layer.trainable = True
-    else:
-        for layer in base_model.layers:
-            layer.trainable = False
-
+    base_model.trainable = False
+    
     model = Sequential([
         base_model,
         GlobalAveragePooling2D(),
         Dense(512, activation="relu"),
         Dropout(0.5),
         Dense(NUM_CLASSES, activation="softmax")
-    ], name="VGG16_Model")
+    ], name="VGG16_Transfer")
 
     model.compile(
-        optimizer=tf.keras.optimizers.Adam(),
+        optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),
         loss=tf.keras.losses.SparseCategoricalCrossentropy(),
-        metrics=['accuracy']
+        metrics=["accuracy"]
     )
-
     return model
+
+def unfreeze_last_n_layers(model, fine_tune_at=2, lr=1e-5):
+    base_model = model.layers[0]
+    base_model.trainable = True
+
+    n_layers = len(base_model.layers)
+    if fine_tune_at <= 0:
+        for layer in base_model.layers:
+            layer.trainable = False
+    else:
+        fine_tune_at = min(fine_tune_at, n_layers)
+        for layer in base_model.layers[: -fine_tune_at]:
+            layer.trainable = False
+        for layer in base_model.layers[-fine_tune_at:]:
+            if isinstance(layer, tf.keras.layers.BatchNormalization):
+                layer.trainable = False
+            else:
+                layer.trainable = True
+
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(learning_rate=lr),
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+        metrics=["accuracy"]
+    )
+    return model
+
