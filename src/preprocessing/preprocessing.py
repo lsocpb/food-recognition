@@ -7,8 +7,12 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 # GLOBAL VARIABLES IN THE SCOPE OF THE FILE
 IMG_SIZE = 224
 TARGET_CLASSES = [
+    'baby_back_ribs',
+    'breakfast_burrito',
+    'hamburger',
+    'pancakes',
     'pizza',
-    'sushi',
+    'risotto',
     'steak',
     'spaghetti_bolognese'
 ]
@@ -55,7 +59,7 @@ def apply_filter_map(is_in_target, image, new_label):
 
 def load_and_split_data(batch_size=32):
     """
-    THIS LOADS FOOD-101, FILTERS TO 5 CLASSES DEFINED IN TARGET_CLASSES AND DIVIDES INTO CITES
+    THIS LOADS FOOD-101, FILTERS TO 8 CLASSES DEFINED IN TARGET_CLASSES AND DIVIDES INTO CITES
     """
     (ds_train, ds_validation, ds_test), ds_info = tfds.load(
         'food101',
