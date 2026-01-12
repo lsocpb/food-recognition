@@ -44,13 +44,20 @@ def create_vgg16_transfer_model(input_shape=(224,224,3)):
     model = Sequential([
         base_model,
         GlobalAveragePooling2D(),
-        Dense(512, activation="relu"),
+        
+        Dense(1024, activation='relu'),
+        BatchNormalization(),
+        Dropout(0.6),
+        
+        Dense(512, activation='relu'),
+        BatchNormalization(),
         Dropout(0.5),
-        Dense(NUM_CLASSES, activation="softmax")
-    ], name="VGG16_Transfer")
+        
+        Dense(NUM_CLASSES, activation='softmax')
+    ], name="VGG16_Custom_Head")
 
     model.compile(
-        optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),
+        optimizer=tf.keras.optimizers.Adam(learning_rate=3e-3),
         loss=tf.keras.losses.SparseCategoricalCrossentropy(),
         metrics=["accuracy"]
     )
